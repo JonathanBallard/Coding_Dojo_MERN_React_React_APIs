@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-
+import axios from 'axios';
 
 function AllPokemon(props){
     const [state, setState] = useState([]);
@@ -17,13 +17,15 @@ function AllPokemon(props){
     // let resp = fetchPoke();
     // console.log('TEST', resp)
 
-    
 
-    useEffect(() => {
-        fetch("https://pokeapi.co/api/v2/pokemon?limit=900")
-            .then(response => response.json())
-            .then(response => setState(response.results))
-    }, []);
+    axios.get("https://pokeapi.co/api/v2/pokemon?limit=900").then(response => setState(response.data.results))
+
+
+    // useEffect(() => {
+    //     fetch("https://pokeapi.co/api/v2/pokemon?limit=900")
+    //         .then(response => response.json())
+    //         .then(response => setState(response.results))
+    // }, []);
 
     console.log(state)
     return (
